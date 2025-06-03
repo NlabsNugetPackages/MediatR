@@ -351,7 +351,7 @@ Commercial License: For commercial usage and enterprise features, a separate com
 
 Support
 
-📧 Email: support@nlabs.com
+📧 Email: turkmvc@gmail.com
 🐛 Issues: GitHub Issues
 💬 Discussions: GitHub Discussions
 📚 Documentation: Wiki
