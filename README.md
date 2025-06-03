@@ -111,6 +111,7 @@ public class TestController : ControllerBase
 }
 ```
 ### Project Structure
+```graphql
 NLabs.MediatR/
 ├── src/
 │   ├── Interfaces/          # Core interfaces (IRequest, IRequestHandler, etc.)
@@ -123,6 +124,7 @@ NLabs.MediatR/
 ├── samples/
 │   └── WebApi/              # Sample web API project
 └── docs/                    # Documentation
+```
 ### Custom Behaviors
 ```csharp
 builder.Services.AddNLabsMediatR(configuration =>
