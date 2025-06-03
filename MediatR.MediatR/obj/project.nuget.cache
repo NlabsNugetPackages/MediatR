@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "nZe/huOjWDo=",
+  "success": true,
+  "projectFilePath": "C:\\Projects\\NugetPackages\\MediatR\\MediatR.MediatR\\MediatR.MediatR.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\root\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\9.0.5\\microsoft.extensions.dependencyinjection.abstractions.9.0.5.nupkg.sha512"
+  ],
+  "logs": []
+}

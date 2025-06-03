@@ -1,0 +1,6 @@
+@MediatR.WebAPI_HostAddress = http://localhost:5205
+
+GET {{MediatR.WebAPI_HostAddress}}/test/create/
+Accept: application/json
+
+###

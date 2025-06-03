@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "cyePA0nSyBI=",
+  "success": true,
+  "projectFilePath": "C:\\Projects\\NugetPackages\\MediatR\\MediatR.WebAPI\\MediatR.WebAPI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\root\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.5\\microsoft.aspnetcore.openapi.9.0.5.nupkg.sha512",
+    "C:\\Users\\root\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\9.0.5\\microsoft.extensions.dependencyinjection.abstractions.9.0.5.nupkg.sha512",
+    "C:\\Users\\root\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512",
+    "C:\\Users\\root\\.nuget\\packages\\scalar.aspnetcore\\2.4.7\\scalar.aspnetcore.2.4.7.nupkg.sha512"
+  ],
+  "logs": []
+}
