@@ -201,3 +201,222 @@ export interface GetUserResult {
   email: string;
 }
 ```
+### Angular Service
+```typescript
+// services/user.service.ts
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({ providedIn: 'root' })
+export class UserService {
+  private apiUrl = 'https://localhost:7236/api/users';
+
+  constructor(private http: HttpClient) {}
+
+  createUser(command: CreateUserCommand): Observable<CreateUserResult> {
+    return this.http.post<CreateUserResult>(this.apiUrl, command);
+  }
+
+  getUser(id: number): Observable<GetUserResult> {
+    return this.http.get<GetUserResult>(`${this.apiUrl}/${id}`);
+  }
+}
+```
+### Performance Features
+#### Built-in Performance Monitoring
+```csharp
+// Automatically logs slow requests
+[Performance Monitoring] CreateUserCommand took 1250ms (threshold: 500ms)
+```
+### Metrics Collection
+```csharp
+public class MetricsBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+    where TRequest : IRequest<TResponse>
+{
+    private readonly IMetricsCollector _metrics;
+
+    public MetricsBehavior(IMetricsCollector metrics)
+    {
+        _metrics = metrics;
+    }
+
+    public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
+    {
+        using var timer = _metrics.StartTimer($"mediatr.{typeof(TRequest).Name}");
+        return await next();
+    }
+}
+```
+### Error Handling
+#### Global Exception Handling
+```csharp
+public class ExceptionBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+    where TRequest : IRequest<TResponse>
+{
+    private readonly ILogger<ExceptionBehavior<TRequest, TResponse>> _logger;
+
+    public ExceptionBehavior(ILogger<ExceptionBehavior<TRequest, TResponse>> logger)
+    {
+        _logger = logger;
+    }
+
+    public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
+    {
+        try
+        {
+            return await next();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error handling {RequestType}", typeof(TRequest).Name);
+            throw;
+        }
+    }
+}
+```
+### Testing
+#### Unit Testing
+```csharp
+[Test]
+public async Task CreateUserCommand_ShouldReturnUser_WhenValidInput()
+{
+    var command = new CreateUserCommand("John Doe", "john@example.com");
+    var handler = new CreateUserCommandHandler(_mockUserService.Object);
+
+    var result = await handler.Handle(command, CancellationToken.None);
+
+    Assert.That(result.Name, Is.EqualTo("John Doe"));
+    Assert.That(result.Email, Is.EqualTo("john@example.com"));
+}
+```
+### Integration Testing
+```csharp
+[Test]
+public async Task CreateUser_EndToEnd_ShouldWork()
+{
+    var command = new CreateUserCommand("John Doe", "john@example.com");
+
+    var response = await _client.PostAsJsonAsync("/api/users", command);
+
+    response.EnsureSuccessStatusCode();
+    var result = await response.Content.ReadFromJsonAsync<CreateUserResult>();
+    Assert.That(result.Name, Is.EqualTo("John Doe"));
+}
+```
+Examples
+✅ Full Stack Example – Complete .NET + Angular implementation
+
+✅ Backend Examples – Various architectural patterns
+
+✅ Frontend Examples – Angular integration examples
+
+Contributing
+We welcome contributions!
+
+Fork the repository
+
+Create a feature branch
+
+Make your changes
+
+Add tests
+
+Submit a pull request
+
+Why NLabs MediatR?
+Performance First
+Zero allocation in hot paths
+
+Optimized reflection with caching
+
+Async-first design
+
+Memory efficient pipeline
+
+Enterprise Features
+Metrics collection
+
+Logging integration
+
+Validation pipeline
+
+Performance alerting
+
+Distributed tracing
+
+Developer Experience
+Rich diagnostics
+
+Configurable options
+
+Clear error handling
+
+Extensive samples & docs
+
+Future Plans
+Commercial Release Features
+🔄 Advanced Caching
+
+💬 Message Queue Integration (RabbitMQ, Azure SB)
+
+🔍 Advanced Monitoring (App Insights, DataDog)
+
+🔐 Built-in Authorization & Auditing
+
+💼 Enterprise Support
+
+Open Source Roadmap
+✅ Full pipeline behaviors
+
+✅ Performance benchmarks
+
+✅ Sample projects
+
+✅ API Documentation
+
+License
+🆓 MIT License for open source usage
+
+💼 Commercial License will be available with enterprise features
+
+Support
+📧 Email: turkmvc@gmail.com
+
+🐛 Issues: GitHub Issues
+
+💬 Discussions: GitHub Discussions
+
+📚 Docs: Wiki
+
+💼 Commercial Support: Available with commercial license
+
+Roadmap
+Phase 1 (Current) - Open Source Foundation
+✅ Core implementation
+
+✅ Basic behaviors
+
+✅ DI integration
+
+🔄 Performance tuning
+
+🔄 Full testing
+
+Phase 2 - Commercial Release
+Enterprise features
+
+NuGet release
+
+Full docs
+
+Commercial support
+
+Related Packages
+NLabs.Extensions – Utility extensions
+
+NLabs.Validation – Validation helpers
+
+NLabs.Logging – Logging utilities
+----------------------------------------------
+Made with ❤️ by NLabs
